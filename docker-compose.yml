@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  db-venta-terreno:
+    image: postgres:15
+    container_name: venta-terreno-db
+    restart: always
+    environment:
+      POSTGRES_DB: venta-terreno
+      POSTGRES_USER: venta-terreno_user
+      POSTGRES_PASSWORD: venta-terreno_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - venta-terreno_pgdata:/var/lib/postgresql/data
+    networks:
+      - venta-terreno-net
+
+volumes:
+  venta-terreno_pgdata:
+
+networks:
+  venta-terreno-net:
+    driver: bridge
